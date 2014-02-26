@@ -1,6 +1,6 @@
 /*
 
-ArcKnobAbsolute fills leds incrementally up to the current position
+ArcRotary fills leds incrementally up to the current position
 (think of a stack of lit leds) and decrements respectively, returns led position 0-63.
 
 https://github.com/nthhisst
@@ -8,15 +8,15 @@ https://github.com/nthhisst
 
 */
 
-ArcKnobAbsolute : ArcKnobIncremental{
+ArcRotary : ArcEncoder {
 
 
     *new { | your_arc, sensitivity_level |
 
-        ^super.new.initArcKnobAbsolute(your_arc, sensitivity_level);
+        ^super.new.initArcRotary(your_arc, sensitivity_level);
     }
 
-    initArcKnobAbsolute { | your_arc, sensitivity_level |
+    initArcRotary { | your_arc, sensitivity_level |
 
         /*
         arc = arc;
@@ -76,7 +76,7 @@ ArcKnobAbsolute : ArcKnobIncremental{
 
                     gathered_delta[knob_n] = 0;
 
-                    ^ current_led[knob_n];
+                    ^ current_led @ knob_n;
                 };
 
             };
@@ -99,7 +99,7 @@ ArcKnobAbsolute : ArcKnobIncremental{
                     0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0]);
 
-                ^ current_led[knob_n];
+                ^ current_led @ knob_n;
             };
 
 
@@ -119,7 +119,7 @@ ArcKnobAbsolute : ArcKnobIncremental{
 
         };
 
-        ^current_led;
+        ^current_led @ knob_n;
     }
 
 }

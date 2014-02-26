@@ -8,7 +8,7 @@ Server.default = Server.local;
 s.waitForBoot({
 
     // create your arc object
-    ~arc = Arc.new("/arc", 0);
+    ~arc = Arc.new("/arc", 270);
 
     // choose your appropriate device
     // if you have a grid device plugged in
@@ -16,8 +16,8 @@ s.waitForBoot({
     ~arc.useDevice(0);
 
     // first argument is your arc object, second sets sensitivity
-    ~arcKnobberInc = ArcKnobIncremental(~arc, 4);
-    ~arcKnobberAbs = ArcKnobAbsolute(~arc, 6);
+    ~arcKnobberInc = ArcRotary(~arc, 4);
+    ~arcKnobberAbs = ArcEncoder(~arc, 6);
 
     OSCFunc.newMatching({ | message |
 
@@ -26,12 +26,12 @@ s.waitForBoot({
 
         if(knob_n == 0){
             // will report position of led (0-63)
-            "knob abs: % \n".postf(~arcKnobberAbs.spin(knob_n, delta));
+            "encoder knob: % \n".postf(~arcKnobberAbs.spin(knob_n, delta));
         };
 
         if(knob_n == 1){
             // will report -1 if negative and 1 if positive
-            "knob inc: % \n".postf(~arcKnobberInc.spin(knob_n, delta));
+            "rotary knob: % \n".postf(~arcKnobberInc.spin(knob_n, delta));
         };
 
     }, '/arc/enc/delta');

@@ -1,6 +1,6 @@
 /*
 
-ArcKnobIncremental lights one led as per position.
+ArcEncoder lights one led as per position.
 Returns -1 if rotation is negative and 1 for positive
 rotation.
 
@@ -9,7 +9,7 @@ https://github.com/nthhisst
 
 */
 
-ArcKnobIncremental{
+ArcEncoder {
 
     var arc;
     var arc_map;
